@@ -27,13 +27,13 @@ int ksh_cd(char **argv)
 {
     if (argv[1] == NULL)
     {
-        fprintf(stderr, "lsh: cd requires path\n");
+        fprintf(stderr, "ksh: cd requires path\n");
     }
     else
     {
         if (chdir(argv[1]) != 0)
         {
-            perror("lsh");
+            perror("ksh");
         }
     }
     return 1;
@@ -74,7 +74,7 @@ int ksh_launch(char **argv)
     }
     else if (pid < 0)
     {
-        perror("lsh");
+        perror("ksh");
     }
     else
     {
@@ -114,7 +114,7 @@ char *ksh_read_line(void)
 
     if (!buffer)
     {
-        fprintf(stderr, "lsh: error allocation\n");
+        fprintf(stderr, "ksh: error allocation\n");
         exit(EXIT_FAILURE);
     }
 
@@ -140,7 +140,7 @@ char *ksh_read_line(void)
 
             if (!buffer)
             {
-                fprintf(stderr, "lsh: error allocation\n");
+                fprintf(stderr, "ksh: error allocation\n");
                 exit(EXIT_FAILURE);
             }
         }
@@ -157,7 +157,7 @@ char **ksh_split_line(char *line)
 
     if (!tokens)
     {
-        fprintf(stderr, "lsh: error allocation\n");
+        fprintf(stderr, "ksh: error allocation\n");
         exit(EXIT_FAILURE);
     }
 
@@ -174,7 +174,7 @@ char **ksh_split_line(char *line)
 
             if (!tokens)
             {
-                fprintf(stderr, "lsh: error allocation\n");
+                fprintf(stderr, "ksh: error allocation\n");
                 exit(EXIT_FAILURE);
             }
         }
