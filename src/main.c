@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define KSH_RL_BUFSIZE 1024
 char *ksh_read_line(void)
@@ -42,6 +43,44 @@ char *ksh_read_line(void)
             }
         }
     }
+}
+
+#define KSK_SL_BUFSIZE 64
+#define KSH_SL_DELIM " \t\r\n\a"
+char **ksh_split_line(char *line)
+{
+    int bufsize = KSK_SL_BUFSIZE, position = 0;
+    char **tokens = malloc(KSK_SL_BUFSIZE * sizeof(char *));
+    char *token;
+
+    if (!tokens)
+    {
+        fprintf(stderr, "lsh: error allocation\n");
+        exit(EXIT_FAILURE);
+    }
+
+    token = strtok(tokens, KSH_SL_DELIM);
+    while (token != NULL)
+    {
+        tokens[position] = token;
+        position++;
+
+        if (position >= bufsize)
+        {
+            bufsize += KSH_RL_BUFSIZE * sizeof(char *);
+            tokens = realloc(tokens, KSH_RL_BUFSIZE * sizeof(char *));
+
+            if (!tokens)
+            {
+                fprintf(stderr, "lsh: error allocation\n");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        token = strtok(NULL, KSH_SL_DELIM);
+    }
+    tokens[position] = NULL;
+    return tokens;
 }
 
 void ksh_loop(void)
