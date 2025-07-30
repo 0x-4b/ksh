@@ -13,6 +13,11 @@ char *builtin_str[] = {
     "exit",
     "help"};
 
+int (*builin_func[])(char **argv) = {
+    &ksh_cd,
+    &ksh_exit,
+    &ksh_help};
+
 int ksl_launch(char **argv)
 {
     pid_t pid, wpid;
