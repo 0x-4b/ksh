@@ -4,11 +4,14 @@
 #include <stdio.h>
 #include <string.h>
 
+int ksh_cd(char **argv);
+int ksh_exit(char **argv);
+int ksh_help(char **argv);
+
 char *builtin_str[] = {
     "cd",
     "exit",
-    "help"
-};
+    "help"};
 
 int ksl_launch(char **argv)
 {
