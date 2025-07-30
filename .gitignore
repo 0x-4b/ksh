@@ -1,0 +1,24 @@
+# Compiled object files
+*.o
+
+# Executables
+*.out
+*.exe
+main
+
+# Build directories
+/build/
+/bin/
+/obj/
+
+# Generated files
+*.log
+
+# VS Code config
+.vscode/
+
+# Mac/Linux specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
