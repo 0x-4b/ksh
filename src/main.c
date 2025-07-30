@@ -27,7 +27,7 @@ int ksh_cd(char **argv)
 {
     if (argv[1] == NULL)
     {
-        fprintf(stderr, "lsh: cd requires path");
+        fprintf(stderr, "lsh: cd requires path\n");
     }
     else
     {
