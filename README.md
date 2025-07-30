@@ -151,4 +151,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Author
 
-**[@0x-4b](https://github.com/0x-4b)**
+**0x-4b**  
+GitHub: [@0x-4b](https://github.com/0x-4b)
