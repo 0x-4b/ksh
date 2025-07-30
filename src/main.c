@@ -88,7 +88,7 @@ int ksh_launch(char **argv)
 
 int ksh_exec(char **argv)
 {
-    if (argv[1] == NULL)
+    if (argv[0] == NULL)
     {
         return 1;
     }
