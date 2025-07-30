@@ -192,6 +192,7 @@ void ksh_loop(void)
 
     do
     {
+        printf("> ");
         line = ksh_read_line();
         args = ksh_split_line(line);
         status = ksh_exec(args);
