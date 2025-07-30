@@ -197,6 +197,7 @@ char **ksh_split_line(char *line)
 void ksh_loop(void)
 {
     char *line;
+    char *last_command = NULL;
     char **args;
     int status;
 
@@ -204,11 +205,31 @@ void ksh_loop(void)
     {
         printf("> ");
         line = ksh_read_line();
-        args = ksh_split_line(line);
-        status = ksh_exec(args);
 
-        free(line);
-        free(args);
+        if (strcmp(line, "!!") == 0)
+        {
+            if (last_command == NULL)
+            {
+                fprintf(stderr, "ksh: no previous command\n");
+                free(line);
+                continue;
+            }
+            else
+            {
+                free(line);
+                line = strdup(last_command);
+            }
+        }
+    
+            free(last_command);
+            last_command = strdup(line);
+
+            args = ksh_split_line(line);
+            status = ksh_exec(args);
+
+            free(line);
+            free(args);
+        
     } while (status);
 }
 
