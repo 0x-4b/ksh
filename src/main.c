@@ -204,10 +204,11 @@ void ksh_loop(void)
     do
     {
         char cwd[1024];
-        if (getcwd(cwd, sizeof(cwd)) == NULL) {
+        if (getcwd(cwd, sizeof(cwd)) == NULL)
+        {
             perror("ksh");
         }
-        
+
         printf("%s > ", cwd);
         line = ksh_read_line();
 
@@ -225,17 +226,19 @@ void ksh_loop(void)
                 line = strdup(last_command);
             }
         }
-    
-            free(last_command);
-            last_command = strdup(line);
 
-            args = ksh_split_line(line);
-            status = ksh_exec(args);
+        free(last_command);
+        last_command = strdup(line);
 
-            free(line);
-            free(args);
-        
+        args = ksh_split_line(line);
+        status = ksh_exec(args);
+
+        free(line);
+        free(args);
+
     } while (status);
+
+    free(last_command);
 }
 
 int main(int argc, char **argv)
