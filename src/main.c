@@ -83,6 +83,7 @@ int ksh_launch(char **argv)
             wpid = waitpid(pid, &status, WUNTRACED);
         } while (!WIFEXITED(status) && !WIFSIGNALED(status));
     }
+    return 1;
 }
 
 int ksh_exec(char **argv)
