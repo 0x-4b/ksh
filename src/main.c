@@ -169,8 +169,8 @@ char **ksh_split_line(char *line)
 
         if (position >= bufsize)
         {
-            bufsize += KSH_RL_BUFSIZE * sizeof(char *);
-            tokens = realloc(tokens, KSH_RL_BUFSIZE * sizeof(char *));
+            bufsize += KSH_RL_BUFSIZE;
+            tokens = realloc(tokens, bufsize * sizeof(char *));
 
             if (!tokens)
             {
