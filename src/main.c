@@ -4,6 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 
+char *builtin_str[] = {
+    "cd",
+    "exit",
+    "help"
+};
+
 int ksl_launch(char **argv)
 {
     pid_t pid, wpid;
