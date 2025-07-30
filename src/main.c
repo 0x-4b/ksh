@@ -18,17 +18,25 @@ int (*builin_func[])(char **argv) = {
     &ksh_exit,
     &ksh_help};
 
-
-int ksh_cd(char **argv) {
-    if (argv[1] == NULL) {
+int ksh_cd(char **argv)
+{
+    if (argv[1] == NULL)
+    {
         fprintf(stderr, "lsh: cd requires path");
     }
-    else {
-        if (chdir(argv[1]) == 1) {
+    else
+    {
+        if (chdir(argv[1]) == 1)
+        {
             perror("lsh");
         }
     }
     return 1;
+}
+
+int ksh_exit(char **argv)
+{
+    return 0;
 }
 
 int ksl_launch(char **argv)
