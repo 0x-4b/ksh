@@ -31,7 +31,7 @@ int ksh_cd(char **argv)
     }
     else
     {
-        if (chdir(argv[1]) == 1)
+        if (chdir(argv[1]) != 0)
         {
             perror("lsh");
         }
