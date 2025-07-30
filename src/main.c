@@ -203,7 +203,12 @@ void ksh_loop(void)
 
     do
     {
-        printf("> ");
+        char cwd[1024];
+        if (getcwd(cwd, sizeof(cwd)) == NULL) {
+            perror("ksh");
+        }
+        
+        printf("%s > ", cwd);
         line = ksh_read_line();
 
         if (strcmp(line, "!!") == 0)
