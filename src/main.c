@@ -50,14 +50,15 @@ int ksh_help(char **argv)
     printf("To execute a command: <command> <arguments>\n");
     printf("These are some builin commands: \n");
 
-    for (int i = 0; i < ksh_builtin_num(); ++i) {
+    for (int i = 0; i < ksh_builtin_num(); ++i)
+    {
         printf("%s\n", builtin_str[i]);
     }
 
     return 1;
 }
 
-int ksl_launch(char **argv)
+int ksh_launch(char **argv)
 {
     pid_t pid, wpid;
     int status;
@@ -82,6 +83,24 @@ int ksl_launch(char **argv)
             wpid = waitpid(pid, &status, WUNTRACED);
         } while (!WIFEXITED(status) && !WIFSIGNALED(status));
     }
+}
+
+int ksh_exec(char **argv)
+{
+    if (argv[1] == NULL)
+    {
+        return 1;
+    }
+
+    for (int i = 0; i < ksh_builtin_num(); ++i)
+    {
+        if (strcmp(argv[0], builtin_str[i]) == 0)
+        {
+            return (builtin_func[i](argv));
+        }
+    }
+
+    return ksh_launch(argv);
 }
 
 #define KSH_RL_BUFSIZE 1024
