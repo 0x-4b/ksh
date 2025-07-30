@@ -1,7 +1,13 @@
+#include <stdlib.h>
 #include <stdio.h>
+
+void ksh_loop(void) {
+
+}
 
 int main(int argc, char **argv)
 {
-    printf("Hello World\n");
-    
+    ksh_loop();
+
+    EXIT_SUCCESS;
 }
