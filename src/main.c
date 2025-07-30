@@ -1,6 +1,35 @@
+#include <unistd.h>
+#include <wait.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+int ksl_launch(char **argv)
+{
+    pid_t pid, wpid;
+    int status;
+
+    pid = fork();
+    if (pid == 0)
+    {
+        if (execvp(argv[0], argv) == -1)
+        {
+            perror("ksh");
+        }
+        exit(EXIT_FAILURE);
+    }
+    else if (pid < 0)
+    {
+        perror("lsh");
+    }
+    else
+    {
+        do
+        {
+            wpid = waitpid(pid, &status, WUNTRACED);
+        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+    }
+}
 
 #define KSH_RL_BUFSIZE 1024
 char *ksh_read_line(void)
