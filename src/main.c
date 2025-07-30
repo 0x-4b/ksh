@@ -160,7 +160,7 @@ char **ksh_split_line(char *line)
         exit(EXIT_FAILURE);
     }
 
-    token = strtok(tokens, KSH_SL_DELIM);
+    token = strtok(line, KSH_SL_DELIM);
     while (token != NULL)
     {
         tokens[position] = token;
