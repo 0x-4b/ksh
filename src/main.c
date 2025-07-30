@@ -186,6 +186,19 @@ char **ksh_split_line(char *line)
 
 void ksh_loop(void)
 {
+    char *line;
+    char **args;
+    int status;
+
+    do
+    {
+        line = ksh_read_line();
+        args = ksh_split_line(line);
+        status = ksh_exec(args);
+
+        free(line);
+        free(args);
+    } while (status);
 }
 
 int main(int argc, char **argv)
