@@ -7,16 +7,19 @@
 int ksh_cd(char **argv);
 int ksh_exit(char **argv);
 int ksh_help(char **argv);
+int ksh_clear(char **argv);
 
 char *builtin_str[] = {
     "cd",
     "exit",
-    "help"};
+    "help",
+    "clear"};
 
 int (*builtin_func[])(char **argv) = {
     &ksh_cd,
     &ksh_exit,
-    &ksh_help};
+    &ksh_help,
+    &ksh_clear};
 
 int ksh_builtin_num()
 {
