@@ -13,10 +13,15 @@ char *builtin_str[] = {
     "exit",
     "help"};
 
-int (*builin_func[])(char **argv) = {
+int (*builtin_func[])(char **argv) = {
     &ksh_cd,
     &ksh_exit,
     &ksh_help};
+
+int ksh_builtin_num()
+{
+    return sizeof(builtin_func) / sizeof(char *);
+}
 
 int ksh_cd(char **argv)
 {
@@ -37,6 +42,19 @@ int ksh_cd(char **argv)
 int ksh_exit(char **argv)
 {
     return 0;
+}
+
+int ksh_help(char **argv)
+{
+    printf("Hello, this is KSH\n");
+    printf("To execute a command: <command> <arguments>\n");
+    printf("These are some builin commands: \n");
+
+    for (int i = 0; i < ksh_builtin_num(); ++i) {
+        printf("%s\n", builtin_str[i]);
+    }
+
+    return 1;
 }
 
 int ksl_launch(char **argv)
