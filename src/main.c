@@ -61,6 +61,12 @@ int ksh_help(char **argv)
     return 1;
 }
 
+int ksh_clear(char **argv)
+{
+    printf("\033[2J");
+    return 1;
+}
+
 int ksh_launch(char **argv)
 {
     pid_t pid, wpid;
