@@ -63,7 +63,7 @@ int ksh_help(char **argv)
 
 int ksh_clear(char **argv)
 {
-    printf("\033[2J");
+    printf("\033[2J\033[H");
     return 1;
 }
 
